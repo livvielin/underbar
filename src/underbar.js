@@ -190,7 +190,7 @@
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
     return _.reduce(collection, function(passes, item) {
-      return passes && (iterator(item) || iterator(Boolean(item)));
+      return Boolean(passes && (iterator(item) || iterator(Boolean(item))));
     }, true);
   };
 
