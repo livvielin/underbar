@@ -193,7 +193,7 @@
       iterator = _.identity;
     }
     return _.reduce(collection, function(passes, item) {
-      return Boolean(passes && (iterator(item) || iterator(Boolean(item))));
+      return Boolean(passes && (iterator(item)));
     }, true);
   };
 
@@ -204,17 +204,10 @@
     if (iterator === undefined) {
       iterator = _.identity;
     }
-
-    for (var i = 0; i < collection.length; i++) {
-      if (iterator(collection[i])) {
-        return true;
-      }
-    }
-    return false;
-    /*
+    
     return !(_.every(collection, function(val) {
       return !iterator(val);
-    }));*/
+    }));
   };
 
 
