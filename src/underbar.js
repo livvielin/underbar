@@ -201,6 +201,9 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    return !(_.every(collection, function(val) {
+      return !iterator(val);
+    }));
   };
 
 
