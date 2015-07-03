@@ -204,9 +204,17 @@
     if (iterator === undefined) {
       iterator = _.identity;
     }
+
+    for (var i = 0; i < collection.length; i++) {
+      if (iterator(collection[i])) {
+        return true;
+      }
+    }
+    return false;
+    /*
     return !(_.every(collection, function(val) {
       return !iterator(val);
-    }));
+    }));*/
   };
 
 
