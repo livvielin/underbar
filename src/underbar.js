@@ -329,12 +329,12 @@
     var result = array.slice();
 
     do {
-      for (var i = 0; i < result.length; i++) {
+      _.each(result, function(val, index) {
         var rand = Math.floor(Math.random() * result.length);
         var temp = result[rand];
-        result[rand] = result[i];
-        result[i] = temp;
-      }
+        result[rand] = result[index];
+        result[index] = temp;
+      });
     } while (array === result);
 
     return result;
