@@ -293,15 +293,14 @@
   // instead if possible.
   _.memoize = function(func) {
     var previousCalls = {};
-    var result;
 
     return function() {
-      if (previousCalls.func != arguments) {
-        previousCalls.func = arguments;
-        result = func.apply(this, arguments);
+      var key = JSON.stringify(arguments);
+      if (previousCalls[key] === undefined) {
+        previousCalls[key] = func.apply(this, arguments);
       }
-      return result;
-    };
+      return previousCalls[key];
+    }
   };
 
   // Delays a function for the given number of milliseconds, and then calls
