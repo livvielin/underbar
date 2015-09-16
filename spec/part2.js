@@ -209,7 +209,7 @@
     });
 
     describe('memoize', function() {
-      var add, memoAdd;
+      var add, memoAdd, square, memoSquare;
 
       beforeEach(function() {
         add = function(a, b) {
@@ -217,6 +217,14 @@
         };
 
         memoAdd = _.memoize(add);
+      });
+
+      beforeEach(function() {
+        square = function(a) {
+          return a * a;
+        };
+
+        memoSquare = _.memoize(square);
       });
 
       it('should produce the same result as the non-memoized version', function() {
@@ -227,6 +235,8 @@
       it('should give different results for different arguments', function() {
         expect(memoAdd(1, 2)).to.equal(3);
         expect(memoAdd(3, 4)).to.equal(7);
+        expect(memoSquare(2)).to.equal(4);
+        expect(memoSquare(4)).to.equal(16);
       });
 
       it('should not run the memoized function twice for any given set of arguments', function() {
